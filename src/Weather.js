@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import Time from "./Time";
 import "./Weather.css";
 
 export default function Weather() {
@@ -40,12 +41,14 @@ export default function Weather() {
             autocomplete="off"
             onChange={handleChange}
           />
-          <button type="Submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Search
           </button>
         </form>
         <h1 id="city">{weather.entry}</h1>
-        <h2 id="time">Tuesday, 11:00</h2>
+        <h2 id="time">
+          <Time />
+        </h2>
         <h2 id="temperature-description" className="description">
           {weather.description}
         </h2>
@@ -89,7 +92,10 @@ export default function Weather() {
           </button>
         </form>
         <h1 id="city">Nairobi</h1>
-        <h2 id="time">Tuesday, 11:00</h2>
+        <h2 id="time">
+          {" "}
+          <Time />
+        </h2>
         <h2 id="temperature-description">Overcast Clouds</h2>
         <div class="row">
           <div class="col-sm">

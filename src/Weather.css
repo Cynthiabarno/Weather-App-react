@@ -31,6 +31,10 @@ button {
   border-radius: 10px;
 }
 
+hr {
+  border: 1px solid black;
+}
+
 .celcius,
 .fahrenheit {
   position: relative;
@@ -47,6 +51,12 @@ button {
 }
 .info {
   font-size: 18px;
+}
+
+.barno {
+  font-size: 20px;
+  text-align: center;
+  margin: auto;
 }
 
 .description {

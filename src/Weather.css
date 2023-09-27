@@ -26,11 +26,6 @@ h2 {
   opacity: 0.9;
 }
 
-button {
-  transition: all 200ms ease-in-out;
-  border-radius: 10px;
-}
-
 hr {
   border: 1px solid black;
 }
@@ -46,9 +41,14 @@ hr {
 .temp {
   font-weight: 400;
   font-size: 40px;
+  line-height: 64px;
   opacity: 0.8;
-  bottom: -10px;
 }
+
+.icon {
+  display: inline-block;
+}
+
 .info {
   font-size: 18px;
 }

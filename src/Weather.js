@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import ReactAnimatedWeather from "react-animated-weather";
 
@@ -38,15 +39,19 @@ export default function Weather() {
         <div className="container">
           <form id="search-form" onSubmit={handleSubmit}>
             <input
+              className="w-50"
               type="search"
               placeholder="Enter City Name"
               id="enter-city"
-              autocomplete="off"
+              autoComplete="off"
+              autoFocus="on"
               onChange={handleChange}
             />
-            <button type="submit" className="btn btn-primary">
-              Search
-            </button>
+            <input
+              type="submit"
+              className="btn btn-primary w-25"
+              value="Search"
+            />
           </form>
           <h1 id="city">{weather.entry}</h1>
           <h2 id="time">
@@ -57,13 +62,14 @@ export default function Weather() {
           </h2>
           <div class="row">
             <div class="col-sm">
-              <ReactAnimatedWeather
-                icon="CLOUDY"
-                color="#00bbf0"
-                size={40}
-                animate={true}
-              />
-
+              <span>
+                <ReactAnimatedWeather
+                  icon="CLOUDY"
+                  color="#00bbf0"
+                  size={40}
+                  animate={true}
+                />
+              </span>
               <span className="temp">{Math.round(weather.temperature)}</span>
               <span className="celcius">°C |</span>
               <span className="fahrenheit">°F</span>
@@ -99,15 +105,19 @@ export default function Weather() {
         <div className="container">
           <form id="search-form" onSubmit={handleSubmit}>
             <input
+              className="w-50"
               type="search"
               placeholder="Enter City Name"
               id="enter-city"
-              autocomplete="off"
+              autoComplete="off"
+              autoFocus="on"
               onChange={handleChange}
             />
-            <button type="submit" className="btn btn-primary">
-              Search
-            </button>
+            <input
+              type="submit"
+              className="btn btn-primary w-25"
+              value="Search"
+            />
           </form>
           <h1 id="city">Nairobi</h1>
           <h2 id="time">
@@ -115,17 +125,19 @@ export default function Weather() {
             <Time />
           </h2>
           <h2 id="temperature-description">Overcast Clouds</h2>
-          <div class="row">
-            <div class="col-sm">
-              <ReactAnimatedWeather
-                icon="CLEAR_DAY"
-                color="#00bbf0"
-                size={40}
-                animate={true}
-              />
-              <span class="temp">14</span>
-              <span class="celcius">°C |</span>
-              <span class="fahrenheit">°F</span>
+          <div className="row">
+            <div className="col-sm">
+              <span>
+                <ReactAnimatedWeather
+                  icon="CLEAR_DAY"
+                  color="#00bbf0"
+                  size={40}
+                  animate={true}
+                />
+              </span>
+              <span className="temp">14</span>
+              <span className="celcius">°C |</span>
+              <span className="fahrenheit">°F</span>
             </div>
             <div class="col-sm">
               <div class="info">

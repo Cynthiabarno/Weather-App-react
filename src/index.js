@@ -7,7 +7,20 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Weather />
+    <div>
+      <Weather defaultCity="Nairobi" />
+      <p className="barno">
+        <a
+          href="https://github.com/Cynthiabarno/Weather-App-react"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open-source code
+        </a>
+        {""} {""}
+        by Cynthia Barno
+      </p>
+    </div>
   </React.StrictMode>
 );
 

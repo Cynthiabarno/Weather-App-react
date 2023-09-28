@@ -7,8 +7,8 @@ import Time from "./Time";
 import Forecast from "./Forecast";
 import "./Weather.css";
 
-export default function Weather() {
-  let [city, setCity] = useState("");
+export default function Weather(props) {
+  let [city, setCity] = useState(props.defaultCity);
   let [loaded, setLoaded] = useState(false);
   let [weather, setWeather] = useState("");
 
@@ -23,10 +23,14 @@ export default function Weather() {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function search() {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=99b8f9330a1bfba3a85e523fd3c2e528&units=metric`;
     axios.get(url).then(showWeather);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
   }
 
   function handleChange(event) {
@@ -86,83 +90,10 @@ export default function Weather() {
           <hr />
           <Forecast />
         </div>
-        <p className="barno">
-          <a
-            href="https://github.com/Cynthiabarno/Weather-App-react"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open-source code
-          </a>
-          {""}
-          by Cynthia Barno
-        </p>
       </div>
     );
   } else {
-    return (
-      <div className="weather">
-        <div className="container">
-          <form id="search-form" onSubmit={handleSubmit}>
-            <input
-              className="w-50"
-              type="search"
-              placeholder="Enter City Name"
-              id="enter-city"
-              autoComplete="off"
-              autoFocus="on"
-              onChange={handleChange}
-            />
-            <input
-              type="submit"
-              className="btn btn-primary w-25"
-              value="Search"
-            />
-          </form>
-          <h1 id="city">Nairobi</h1>
-          <h2 id="time">
-            {" "}
-            <Time />
-          </h2>
-          <h2 id="temperature-description">Overcast Clouds</h2>
-          <div className="row">
-            <div className="col-sm">
-              <span>
-                <ReactAnimatedWeather
-                  icon="CLEAR_DAY"
-                  color="#00bbf0"
-                  size={40}
-                  animate={true}
-                />
-              </span>
-              <span className="temp">14</span>
-              <span className="celcius">°C |</span>
-              <span className="fahrenheit">°F</span>
-            </div>
-            <div class="col-sm">
-              <div class="info">
-                Humidity: <span id="humidity">92</span>%
-              </div>
-              <div class="info">
-                Wind: <span id="wind">1</span>km/h
-              </div>
-            </div>
-          </div>
-          <hr />
-          <Forecast />
-        </div>
-        <p className="barno">
-          <a
-            href="https://github.com/Cynthiabarno/Weather-App-react"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open-source code
-          </a>
-          {""}
-          by Cynthia Barno
-        </p>
-      </div>
-    );
+    search();
+    return "loading...";
   }
 }

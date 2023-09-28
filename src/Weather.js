@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import ReactAnimatedWeather from "react-animated-weather";
 
+import Icon from "./Icon";
 import Time from "./Time";
 import Forecast from "./Forecast";
 import "./Weather.css";
@@ -20,6 +20,7 @@ export default function Weather(props) {
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
+      icon: response.data.weather[0].icon,
     });
   }
 
@@ -64,15 +65,10 @@ export default function Weather(props) {
           <h2 id="temperature-description" className="description">
             {weather.description}
           </h2>
-          <div class="row">
-            <div class="col-sm">
-              <span>
-                <ReactAnimatedWeather
-                  icon="CLOUDY"
-                  color="#00bbf0"
-                  size={40}
-                  animate={true}
-                />
+          <div className="row">
+            <div className="col-sm">
+              <span className="mt-3">
+                <Icon code={weather.icon} />
               </span>
               <span className="temp">{Math.round(weather.temperature)}</span>
               <span className="celcius">°C |</span>

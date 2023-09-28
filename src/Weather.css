@@ -53,12 +53,6 @@ hr {
   font-size: 18px;
 }
 
-.barno {
-  font-size: 20px;
-  text-align: center;
-  margin: auto;
-}
-
 .description {
   text-transform: capitalize;
 }

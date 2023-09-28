@@ -14,6 +14,7 @@ root.render(
           href="https://github.com/Cynthiabarno/Weather-App-react"
           target="_blank"
           rel="noreferrer"
+          className="github"
         >
           Open-source code
         </a>

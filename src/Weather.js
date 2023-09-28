@@ -6,6 +6,7 @@ import Icon from "./Icon";
 import Time from "./Time";
 import Forecast from "./Forecast";
 import "./Weather.css";
+import TemperatureConversion from "./TemperatureConversion";
 
 export default function Weather(props) {
   let [city, setCity] = useState(props.defaultCity);
@@ -70,9 +71,9 @@ export default function Weather(props) {
               <span className="mt-3">
                 <Icon code={weather.icon} />
               </span>
-              <span className="temp">{Math.round(weather.temperature)}</span>
-              <span className="celcius">°C |</span>
-              <span className="fahrenheit">°F</span>
+              <span>
+                <TemperatureConversion temp={weather.temperature} />
+              </span>
             </div>
             <div class="col-sm">
               <div class="info">

@@ -22,11 +22,12 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       icon: response.data.weather[0].icon,
+      coords: response.data.coord,
     });
   }
 
   function search() {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=99b8f9330a1bfba3a85e523fd3c2e528&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5201594abea9f3e38b70e65b11a80c24&units=metric`;
     axios.get(url).then(showWeather);
   }
 
@@ -85,7 +86,7 @@ export default function Weather(props) {
             </div>
           </div>
           <hr />
-          <Forecast />
+          <Forecast coordinates={weather.coords} />
         </div>
       </div>
     );

@@ -1,80 +1,37 @@
-import ReactAnimatedWeather from "react-animated-weather";
+import React, { useState } from "react";
+import axios from "axios";
+import "./Forecast.css";
+import ForecastDay from "./ForecastDay";
 
-export default function Forecast() {
-  return (
-    <div class="row">
-      <div class="col-sm-2">
-        <div>Tue</div>
-        <div>
-          <ReactAnimatedWeather
-            icon="RAIN"
-            color="#0962ea"
-            size={40}
-            animate={true}
-          />
-        </div>
-        <div>26 / 14 °C</div>
+export default function Forecast(props) {
+  const [ready, setReady] = useState(false);
+  const [forecast, setForecast] = useState("");
+
+  function showForecast(response) {
+    setReady(true);
+    setForecast(response.data.daily);
+  }
+
+  if (ready) {
+    return (
+      <div class="row">
+        {forecast.map((dailyForecast, index) => {
+          if (index < 6) {
+            return (
+              <div class="col-sm-2" key={index}>
+                <ForecastDay data={dailyForecast} />
+              </div>
+            );
+          }
+        })}
       </div>
-      <div class="col-sm">
-        <div>Wed</div>
-        <div>
-          <ReactAnimatedWeather
-            icon="PARTLY_CLOUDY_DAY"
-            color="#0962ea"
-            size={40}
-            animate={true}
-          />
-        </div>
-        <div>28 / 15 °C</div>
-      </div>
-      <div class="col-sm-2">
-        <div>Thu</div>
-        <div>
-          <ReactAnimatedWeather
-            icon="CLOUDY"
-            color="#0962ea"
-            size={40}
-            animate={true}
-          />
-        </div>
-        <div>27 / 14 °C</div>
-      </div>
-      <div class="col-sm-2">
-        <div>Fri</div>
-        <div>
-          <ReactAnimatedWeather
-            icon="RAIN"
-            color="#0962ea"
-            size={40}
-            animate={true}
-          />
-        </div>
-        <div>28 / 14 °C</div>
-      </div>
-      <div class="col-sm-2">
-        <div>Sat</div>
-        <div>
-          <ReactAnimatedWeather
-            icon="SLEET"
-            color="#0962ea"
-            size={40}
-            animate={true}
-          />
-        </div>
-        <div>28 / 17 °C</div>
-      </div>
-      <div class="col-sm">
-        <div>Sun</div>
-        <div>
-          <ReactAnimatedWeather
-            icon="PARTLY_CLOUDY_DAY"
-            color="#0962ea"
-            size={40}
-            animate={true}
-          />
-        </div>
-        <div>28 / 14 °C</div>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    let lat = props.coordinates.lat;
+    let lon = props.coordinates.lon;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&&appid=5201594abea9f3e38b70e65b11a80c24&units=metric`;
+    axios.get(apiUrl).then(showForecast);
+
+    return "loading..";
+  }
 }

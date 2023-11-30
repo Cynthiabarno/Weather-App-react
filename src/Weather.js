@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
 import Icon from "./Icon";
 import Time from "./Time";
 import Forecast from "./Forecast";
 import "./Weather.css";
 import TemperatureConversion from "./TemperatureConversion";
+import Options from "./Options";
 
 export default function Weather(props) {
   let [city, setCity] = useState(props.defaultCity);
@@ -44,22 +46,22 @@ export default function Weather(props) {
     return (
       <div className="weather">
         <div className="container">
-          <form id="search-form" onSubmit={handleSubmit}>
-            <input
-              className="w-50"
-              type="search"
-              placeholder="Enter City Name"
-              id="enter-city"
-              autoComplete="off"
-              autoFocus="on"
-              onChange={handleChange}
-            />
-            <input
-              type="submit"
-              className="btn btn-primary w-25"
-              value="Search"
-            />
+          <form className="search-form" onSubmit={handleSubmit}>
+            <div class="d-flex justify-content-start">
+              <input
+                type="search"
+                className="form-control w-50"
+                id="exampleDataList"
+                list="datalistOptions"
+                placeholder="Enter your city..."
+                onChange={handleChange}
+              />
+              <Options />
+
+              <input type="submit" className="btn btn-primary" value="Search" />
+            </div>
           </form>
+
           <h1 id="city">{weather.entry}</h1>
           <h2 id="time">
             <Time />
@@ -92,6 +94,16 @@ export default function Weather(props) {
     );
   } else {
     search();
-    return "loading...";
+    return (
+      <ThreeDots
+        height="30"
+        width="30"
+        radius="9"
+        color="black"
+        ariaLabel="loading"
+        wrapperStyle
+        wrapperClass
+      />
+    );
   }
 }
